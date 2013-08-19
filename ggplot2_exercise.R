@@ -2,6 +2,7 @@
 ### Data visualization exercise
 
 
+
 ################################################################################
 ####                        set up working environment                      ####
 ################################################################################
@@ -13,6 +14,7 @@ library(ggplot2)
 ####                        the bar graph                                   ####
 ################################################################################
 str(ChickWeight)
+
 ggplot(ChickWeight, aes(x=Diet,y=weight)) + 
     geom_bar(stat='identity') +
     xlab('This is my customized xlab!') + 
@@ -129,6 +131,93 @@ check2$cum <- as.vector(t(cums[,-1]))
 ggplot(check2, aes(x=factor(Time),fill=Diet,y=weight)) + 
     geom_bar(stat='identity') +
     geom_text(aes(y=cum, label=weight), color='white', size=7) # size the text
+
+
+################################################################################
+####                        the line graph                                  ####
+################################################################################
+str(AirPassengers)
+
+# ggplot can't deal with matrix/ts objects
+air <- as.data.frame(t(
+    matrix(AirPassengers, nrow=12, ncol=length(AirPassengers)/12)
+    ))
+colnames(air) <- paste('m', 1:12, sep='')
+air$year <- seq(start(AirPassengers)[1], end(AirPassengers)[1], 1)
+
+# default plot
+ggplot(air, aes(x=year,y=m1)) + geom_line()
+# add points
+ggplot(air, aes(x=year,y=m1)) + geom_line() + geom_point()
+# change points' size and shape
+ggplot(air, aes(x=year,y=m1)) + geom_line() + geom_point(size=5)
+ggplot(air, aes(x=year,y=m1)) + geom_line() + geom_point(size=5, shape=2)
+# change linetype, thickness, and color
+ggplot(air, aes(x=year,y=m1)) + 
+    geom_line(linetype='dashed', size=1.5, color='blue')
+
+# x var can be factors, but need additional parm group=1
+# note that a continuous x var may be conceived (not displayed) on the x axis
+# use factor(x) to force their presence
+ggplot(air, aes(x=factor(year),y=m1,group=1)) + geom_line()
+
+# use a log10 y axis
+ggplot(air, aes(x=year,y=m1)) + geom_line() + geom_point() + scale_y_log10()
+# set range of y axis
+ggplot(air, aes(x=year,y=m1)) + geom_line() + ylim(0, max(air$m1))
+
+# plot multiple lines
+# unfortunately, there is no matplot() counterpart in ggplot2
+# this means, data must be in long format with a group indicator
+air_long <- cbind(stack(air[,1:12]), year=air$year)
+# use color=
+ggplot(air_long, aes(x=year,y=values,color=ind)) + geom_line()
+# change the group var order in the legend (ordered factor)
+air_long$ind <- factor(air_long$ind, levels=paste('m', 1:12, sep=''))
+# use linetype=
+ggplot(air_long, aes(x=year,y=values,linetype=ind)) + geom_line()
+# use point shape (only up to 6 categories)
+ggplot(air_long[1:(12*6),], aes(x=year,y=values,shape=ind)) + 
+    geom_line() + geom_point(size=5)
+# use fill= (colorized points) with shape=21 (vaccum circles)
+ggplot(air_long[1:(12*6),], aes(x=year,y=values,fill=ind)) + 
+    geom_line() + geom_point(size=5, shape=21)
+# in case where x is factors: add group=x
+ggplot(air_long, aes(x=factor(year),y=values,color=ind,group=ind)) + geom_line()
+
+# line with shaded area
+ggplot(air, aes(x=factor(year),y=m1,group=1)) + geom_area()
+# change outline, color, alpha (transparency)
+ggplot(air, aes(x=factor(year),y=m1,group=1)) + 
+    geom_area(color='red', fill='darkblue', alpha=.2)
+# top outline only
+ggplot(air, aes(x=factor(year),y=m1,group=1)) + 
+    geom_area(fill='darkblue', alpha=.2) + geom_line(color='red')
+
+# stacked area plot
+ggplot(air_long, aes(x=year,y=values,fill=ind)) + geom_area()
+ggplot(air_long, aes(x=year,y=values,color=ind)) + geom_area()
+# reverse the order of legend (as in the stacked bar graph)
+ggplot(air_long, aes(x=year,y=values,fill=ind)) + geom_area() + 
+    guides(fill=guide_legend(reverse=TRUE))
+
+# proportional stacked area plot (as in the stacked bar graph)
+air_longp <- merge(air_long,
+                   aggregate(data=air_long, values ~ year, FUN=sum),
+                   by='year')
+air_longp$pct <- air_longp$values.x / air_longp$values.y
+# without sorting on group var (horrible!)
+ggplot(air_longp, aes(x=year,y=pct,fill=ind)) + geom_area() + 
+    guides(fill=guide_legend(reverse=TRUE))
+# with sorting on group var
+air_longp <- air_longp[order(air_longp$ind),]
+ggplot(air_longp, aes(x=year,y=pct,fill=ind)) + geom_area() + 
+    guides(fill=guide_legend(reverse=TRUE))
+
+
+
+
+
 
 
 
