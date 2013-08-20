@@ -7,7 +7,9 @@
 ####                        set up working environment                      ####
 ################################################################################
 setwd('C:/Dropbox/R/datavis')
-library(ggplot2)
+library(ggplot2)   # package for fancy plotting
+library(gridExtra) # multiplot on single page
+# use ggsave() to save ggplot object; use arrangeGrob() for multiplot
 
 
 ################################################################################
@@ -18,7 +20,9 @@ str(ChickWeight)
 ggplot(ChickWeight, aes(x=Diet,y=weight)) + 
     geom_bar(stat='identity') +
     xlab('This is my customized xlab!') + 
-    ylab('And this is ylab!')
+    ylab('And this is ylab!') +
+    ggtitle('This is the MAIN') + 
+    theme(axis.text.x=element_text(angle=90,vjust=.5)) # traonspose the x labels
 
 # in aes(), x denotes the categorical variable in the given data.frame, 
 # and y is the value to be plotted if stat='identity' is used
@@ -215,24 +219,98 @@ ggplot(air_longp, aes(x=year,y=pct,fill=ind)) + geom_area() +
     guides(fill=guide_legend(reverse=TRUE))
 
 
+################################################################################
+####                        the scatter plot                                ####
+################################################################################
+str(cars)
+
+ggplot(cars, aes(x=speed,y=dist)) + geom_point()
+
+# change point size (default to 2) or shape (1-25, default to 16)
+ggplot(cars, aes(x=speed,y=dist)) + geom_point(size=5) 
+ggplot(cars, aes(x=speed,y=dist)) + geom_point(shape=2)  # hollow triangle
+ggplot(cars, aes(x=speed,y=dist)) + geom_point(shape=4)  # x-mark
+ggplot(cars, aes(x=speed,y=dist)) + geom_point(shape=19) # better solid circle
+ggplot(cars, aes(x=speed,y=dist)) + geom_point(shape=21) # hollow circle
+# and more...
+ggplot(cars, aes(x=speed,y=dist)) + geom_point(shape='#', size=5)
+ggplot(cars, aes(x=speed,y=dist)) + geom_point(shape='|', size=5)
+ggplot(cars, aes(x=speed,y=dist)) + geom_point(shape='%', size=5)
+ggplot(cars, aes(x=speed,y=dist)) + geom_point(shape='+', size=5)
+# indeed, some other string literals also work...
+ggplot(cars, aes(x=speed,y=dist)) + geom_point(shape='0', size=5)
+ggplot(cars, aes(x=speed,y=dist)) + geom_point(shape='1', size=5)
+ggplot(cars, aes(x=speed,y=dist)) + geom_point(shape='a', size=5)
+
+# set transparency
+ggplot(cars, aes(x=speed,y=dist)) + geom_point(alpha=.2, size=5)
+
+# all possible shapes! (here you know how to hide the axis label)
+spoint <- data.frame(x=1,y=1)
+symbol_points <- list()
+for (i in 1:25) {
+    symbol_points[[i]] <- ggplot(spoint, aes(x=x,y=y)) + 
+        geom_point(shape=i, size=5) +
+        ggtitle(sprintf('shape=%s',i)) + 
+        theme(axis.text.x=element_blank(), axis.text.y=element_blank()) +
+        xlab('') + ylab('')
+}
+symbols <- do.call(arrangeGrob,symbol_points)
+ggsave(symbols, filename='all_point_symbols.png')
+
+# group points by color or/and shape: need grouping var in the data.frame
+cars$grp <- cars$dist >= 50
+ggplot(cars, aes(x=speed,y=dist,color=grp)) + geom_point(size=5) 
+ggplot(cars, aes(x=speed,y=dist,shape=grp)) + geom_point(size=5) 
+ggplot(cars, aes(x=speed,y=dist,shape=grp, color=grp)) + geom_point(size=5)
+# set up shapes manually
+ggplot(cars, aes(x=speed,y=dist,shape=grp)) + geom_point(size=5) +
+    scale_shape_manual(values=c(4,21))
+
+# use continous var as the group var (the third dim for scatter plot)
+str(women)
+women$bmi <- women$weight*0.45359 / (women$height*2.54/100)^2
+ggplot(women, aes(x=weight,y=height,color=bmi)) + geom_point(size=5)
+ggplot(women, aes(x=weight,y=height,size=bmi)) + geom_point(shape=19)
+
+# large scale scatter plot
+pseudo <- data.frame(x=rnorm(50000), y=runif(50000))
+ggplot(pseudo, aes(x=x,y=y)) + geom_point() # unable to see the density!
+# bin points plot: deafult to 30*30 grids, each with its own density 
+ggplot(pseudo, aes(x=x,y=y)) + stat_bin2d()
+# use 50*50 grids with modified colorization
+ggplot(pseudo, aes(x=x,y=y)) + stat_bin2d(bins=70) +
+    scale_fill_gradient(low='grey',high='black')
+# hex point
+ggplot(pseudo, aes(x=x,y=y)) + stat_binhex(bins=50) +
+    scale_fill_gradient(low='grey',high='red')
+
+# plot regression line
+head(faithful)
+p <- ggplot(faithful, aes(x=eruptions,y=waiting)) + geom_point()
+p + stat_smooth(method=lm, level=.9)  # set 90% CI (default is 95%)
+p + stat_smooth(method=lm, se=FALSE)  # remove CI
+# change line type (linetype can be string or integer)
+p + stat_smooth(method=lm, se=FALSE, color='red', size=1, linetype='dotted')
+
+# locally weighted polynomial fit (the default)
+p + stat_smooth()
+
+# logit fit
+cars$grp <- as.numeric(cars$grp)
+ggplot(cars, aes(x=speed,y=grp)) + 
+    geom_point() +
+    stat_smooth(method=glm, family=binomial)
+
+# ballon plot
+cars$rvalue <- sample(1:1000, size=nrow(cars), replace=TRUE)
+ggplot(cars, aes(x=speed,y=dist,size=rvalue)) + 
+    geom_point(shape=21) +
+    scale_size_area(max_size=10)
 
 
 
 
 
 
-
-
-## scatter plot
-str(mtcars)
-plot(mtcars$mpg, mtcars$wt) # the base R approach
-qplot(mpg, wt, data=mtcars) # teh ggplot approach
-
-## line graph
-plot(mtcars$mpg, mtcars$wt, type='l')    # failed due to unsorted
-mpg_wt <- as.data.frame(cbind(mpg=mtcars$mpg, wt=mtcars$wt))
-mpg_wt <- mpg_wt[order(mpg_wt$mpg),]
-plot(mpg_wt[,1],mpg_wt[,2], type='l')    # success after sorting
-plot(mpg_wt, type='l')                   # the same
-qplot(mpg, wt, data=mtcars, geom='line') # auto pre-sorting
 
