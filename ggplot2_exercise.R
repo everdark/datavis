@@ -147,6 +147,13 @@ ggplot(check1, aes(x=factor(1),y=weight,fill=Diet)) +
     geom_bar(stat='identity') + 
     coord_polar(theta='y')
 
+# change legend text (the breaks link to original group var)
+ggplot(check1, aes(x=factor(1),y=weight,fill=Diet)) + 
+    geom_bar(stat='identity') + 
+    coord_polar(theta='y') +
+    scale_fill_discrete(breaks=check1$Diet, labels=paste('new',1:4))
+    
+
 ################################################################################
 ####                        the line graph                                  ####
 ################################################################################
