@@ -108,6 +108,12 @@ ggplot(sleepid, aes(x=ID,y=extra,fill=pos)) +
     geom_bar(stat='identity', position='identity') +
     guides(fill=FALSE) # remove the legend
 
+# change legend title
+# be aware that argname is linked to group var
+ggplot(sleepid, aes(x=ID,y=extra,fill=pos)) +
+    geom_bar(stat='identity', position='identity') +
+    labs(fill='my legend title') 
+
 # change bar width (maximum width = 1)
 ggplot(sleepid, aes(x=ID,y=extra,fill=pos)) +
     geom_bar(stat='identity', position='identity', width=.5) 
@@ -136,6 +142,10 @@ ggplot(check2, aes(x=factor(Time),fill=Diet,y=weight)) +
     geom_bar(stat='identity') +
     geom_text(aes(y=cum, label=weight), color='white', size=7) # size the text
 
+# pie chart    
+ggplot(check1, aes(x=factor(1),y=weight,fill=Diet)) + 
+    geom_bar(stat='identity') + 
+    coord_polar(theta='y')
 
 ################################################################################
 ####                        the line graph                                  ####
