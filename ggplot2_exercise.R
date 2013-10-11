@@ -49,6 +49,10 @@ ggplot(check1, aes(x=Diet.str,y=weight)) + geom_bar(stat='identity')
 ggplot(ChickWeight, aes(x=Time,y=weight)) + geom_bar(stat='identity')
 # to cure this (if preferred), use factor()
 ggplot(ChickWeight, aes(x=factor(Time),y=weight)) + geom_bar(stat='identity')
+# still want to keep factors with no count?
+ggplot(ChickWeight, aes(x=factor(Time, level=0:21),y=weight)) + 
+    geom_bar(stat='identity') + 
+    scale_x_discrete(drop=FALSE)
 
 # ignore y var to plot the x var by its counts
 ggplot(ChickWeight, aes(x=Diet)) + geom_bar(stat='bin') # or simply geom_bar()
