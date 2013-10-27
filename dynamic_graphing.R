@@ -6,14 +6,15 @@
 ################################################################################
 ####                        set up working environment                      ####
 ################################################################################
-setwd('C:/Dropbox/R/datavis')
+setwd('./svg')
 library(gridSVG)
 library(ggplot2) # notice that ggplot2 is grid-based
 
 ## official demo code from: https://www.stat.auckland.ac.nz/~paul/gridSVG/
 # create sample grid plot
 topvp <- viewport(y=1, just="top", name="topvp", height=unit(1, "lines"))
-botvp <- viewport(y=0, just="bottom", name="botvp", height=unit(1, "npc") - unit(1, "lines"))
+botvp <- viewport(y=0, just="bottom", name="botvp", height=unit(1, "npc") -
+                      unit(1, "lines"))
 grid.rect(gp=gpar(fill="grey"), vp=topvp, name="toprect")
 grid.rect(vp=botvp, name="botrect")
 
@@ -46,7 +47,24 @@ allblack = function() {
 gridToSVG("gridscript.svg", xmldecl=NULL)
 
 
-## try ggplot
+################################################################################
+####                        toolkit for name display                        ####
+################################################################################
+## official demo code from: https://www.stat.auckland.ac.nz/~paul/gridSVG/
+grobs <- grid.ls()
+names <- grobs$name[grobs$type == "grobListing"]
+for (i in unique(names)) {
+    grid.garnish(i,
+                 onmouseover=paste("showTooltip(evt, '", i, "')"),
+                 onmouseout="hideTooltip()")
+}
+grid.script(filename="tooltip.js")
+gridToSVG("qplotbrowser.svg", xmldecl=NULL)
+
+
+################################################################################
+####                        dynamic ggplot                                  ####
+################################################################################
 # create grid-based plot
 dev.off()
 check1 <- aggregate(weight ~ Diet, data=ChickWeight, FUN=sum)
@@ -65,6 +83,10 @@ gg
 grid.hyperlink("geom_rect.rect.133", c("http://www.r-project.org"), group=FALSE)
 gridToSVG("bargraph.svg", xmldecl=NULL)
 # only the first bar get hyperlink, notice that the href is NOT recycled
+
+
+
+
 
 
 
