@@ -1,0 +1,1046 @@
+<!doctype HTML>
+<meta charset = 'utf-8'>
+<html>
+  <head>
+    <link rel='stylesheet' href='C:/Users/everdark/Documents/R/win-library/3.0/rCharts/libraries/nvd3/css/nv.d3.css'>
+    <link rel='stylesheet' href='C:/Users/everdark/Documents/R/win-library/3.0/rCharts/libraries/nvd3/css/rNVD3.css'>
+    
+    <script src='C:/Users/everdark/Documents/R/win-library/3.0/rCharts/libraries/nvd3/js/jquery-1.8.2.min.js' type='text/javascript'></script>
+    <script src='C:/Users/everdark/Documents/R/win-library/3.0/rCharts/libraries/nvd3/js/d3.v3.min.js' type='text/javascript'></script>
+    <script src='C:/Users/everdark/Documents/R/win-library/3.0/rCharts/libraries/nvd3/js/nv.d3.min-new.js' type='text/javascript'></script>
+    <script src='C:/Users/everdark/Documents/R/win-library/3.0/rCharts/libraries/nvd3/js/fisheye.js' type='text/javascript'></script>
+    
+    <style>
+    .rChart {
+      display: block;
+      margin-left: auto; 
+      margin-right: auto;
+      width: 800px;
+      height: 400px;
+    } 
+    
+    #tooltip {
+        position: absolute;
+        width: 100px;
+        height: auto;
+        padding: 10px;
+        background-color: white;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        pointer-events: none;
+    }
+    #tooltip.hidden {
+        display: none;
+    }
+    #tooltip p {
+        margin: 0;
+        font-family: sans-serif;
+        font-size: 16px;
+        line-height: 20px;
+    }
+    
+    .nv-legendWrap {
+        pointer-events: none;
+    }
+    
+    .nv-controlsWrap {
+        pointer-events: none;   
+        display: none;
+    }
+    
+    
+    </style>
+    
+  </head>
+  <body>
+    <div id='chart26704f4538c' class='rChart nvd3'></div>  
+    
+    <script type='text/javascript'>
+ $(document).ready(function(){
+      drawchart26704f4538c()
+    });
+    function drawchart26704f4538c(){  
+      var opts = {
+ "dom": "chart26704f4538c",
+"width":    800,
+"height":    400,
+"x": "PetalWidth",
+"y": "PetalLength",
+"type": "scatterChart",
+"group": "Species",
+"id": "chart26704f4538c" 
+},
+        data = [
+ {
+ "PetalLength":    1.4,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N946" 
+},
+{
+ "PetalLength":    1.4,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N460" 
+},
+{
+ "PetalLength":    1.3,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N616" 
+},
+{
+ "PetalLength":    1.5,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N331" 
+},
+{
+ "PetalLength":    1.4,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N64" 
+},
+{
+ "PetalLength":    1.7,
+"PetalWidth":    0.4,
+"Species": "setosa",
+"Name": "N819" 
+},
+{
+ "PetalLength":    1.4,
+"PetalWidth":    0.3,
+"Species": "setosa",
+"Name": "N300" 
+},
+{
+ "PetalLength":    1.5,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N324" 
+},
+{
+ "PetalLength":    1.4,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N48" 
+},
+{
+ "PetalLength":    1.5,
+"PetalWidth":    0.1,
+"Species": "setosa",
+"Name": "N735" 
+},
+{
+ "PetalLength":    1.5,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N319" 
+},
+{
+ "PetalLength":    1.6,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N758" 
+},
+{
+ "PetalLength":    1.4,
+"PetalWidth":    0.1,
+"Species": "setosa",
+"Name": "N533" 
+},
+{
+ "PetalLength":    1.1,
+"PetalWidth":    0.1,
+"Species": "setosa",
+"Name": "N551" 
+},
+{
+ "PetalLength":    1.2,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N758" 
+},
+{
+ "PetalLength":    1.5,
+"PetalWidth":    0.4,
+"Species": "setosa",
+"Name": "N355" 
+},
+{
+ "PetalLength":    1.3,
+"PetalWidth":    0.4,
+"Species": "setosa",
+"Name": "N492" 
+},
+{
+ "PetalLength":    1.4,
+"PetalWidth":    0.3,
+"Species": "setosa",
+"Name": "N869" 
+},
+{
+ "PetalLength":    1.7,
+"PetalWidth":    0.3,
+"Species": "setosa",
+"Name": "N964" 
+},
+{
+ "PetalLength":    1.5,
+"PetalWidth":    0.3,
+"Species": "setosa",
+"Name": "N725" 
+},
+{
+ "PetalLength":    1.7,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N670" 
+},
+{
+ "PetalLength":    1.5,
+"PetalWidth":    0.4,
+"Species": "setosa",
+"Name": "N99" 
+},
+{
+ "PetalLength":      1,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N180" 
+},
+{
+ "PetalLength":    1.7,
+"PetalWidth":    0.5,
+"Species": "setosa",
+"Name": "N238" 
+},
+{
+ "PetalLength":    1.9,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N619" 
+},
+{
+ "PetalLength":    1.6,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N890" 
+},
+{
+ "PetalLength":    1.6,
+"PetalWidth":    0.4,
+"Species": "setosa",
+"Name": "N559" 
+},
+{
+ "PetalLength":    1.5,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N689" 
+},
+{
+ "PetalLength":    1.4,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N338" 
+},
+{
+ "PetalLength":    1.6,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N32" 
+},
+{
+ "PetalLength":    1.6,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N291" 
+},
+{
+ "PetalLength":    1.5,
+"PetalWidth":    0.4,
+"Species": "setosa",
+"Name": "N615" 
+},
+{
+ "PetalLength":    1.5,
+"PetalWidth":    0.1,
+"Species": "setosa",
+"Name": "N587" 
+},
+{
+ "PetalLength":    1.4,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N759" 
+},
+{
+ "PetalLength":    1.5,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N976" 
+},
+{
+ "PetalLength":    1.2,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N862" 
+},
+{
+ "PetalLength":    1.3,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N803" 
+},
+{
+ "PetalLength":    1.4,
+"PetalWidth":    0.1,
+"Species": "setosa",
+"Name": "N551" 
+},
+{
+ "PetalLength":    1.3,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N394" 
+},
+{
+ "PetalLength":    1.5,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N486" 
+},
+{
+ "PetalLength":    1.3,
+"PetalWidth":    0.3,
+"Species": "setosa",
+"Name": "N436" 
+},
+{
+ "PetalLength":    1.3,
+"PetalWidth":    0.3,
+"Species": "setosa",
+"Name": "N625" 
+},
+{
+ "PetalLength":    1.3,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N451" 
+},
+{
+ "PetalLength":    1.6,
+"PetalWidth":    0.6,
+"Species": "setosa",
+"Name": "N754" 
+},
+{
+ "PetalLength":    1.9,
+"PetalWidth":    0.4,
+"Species": "setosa",
+"Name": "N243" 
+},
+{
+ "PetalLength":    1.4,
+"PetalWidth":    0.3,
+"Species": "setosa",
+"Name": "N908" 
+},
+{
+ "PetalLength":    1.6,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N196" 
+},
+{
+ "PetalLength":    1.4,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N497" 
+},
+{
+ "PetalLength":    1.5,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N626" 
+},
+{
+ "PetalLength":    1.4,
+"PetalWidth":    0.2,
+"Species": "setosa",
+"Name": "N624" 
+},
+{
+ "PetalLength":    4.7,
+"PetalWidth":    1.4,
+"Species": "versicolor",
+"Name": "N590" 
+},
+{
+ "PetalLength":    4.5,
+"PetalWidth":    1.5,
+"Species": "versicolor",
+"Name": "N318" 
+},
+{
+ "PetalLength":    4.9,
+"PetalWidth":    1.5,
+"Species": "versicolor",
+"Name": "N229" 
+},
+{
+ "PetalLength":      4,
+"PetalWidth":    1.3,
+"Species": "versicolor",
+"Name": "N346" 
+},
+{
+ "PetalLength":    4.6,
+"PetalWidth":    1.5,
+"Species": "versicolor",
+"Name": "N748" 
+},
+{
+ "PetalLength":    4.5,
+"PetalWidth":    1.3,
+"Species": "versicolor",
+"Name": "N60" 
+},
+{
+ "PetalLength":    4.7,
+"PetalWidth":    1.6,
+"Species": "versicolor",
+"Name": "N837" 
+},
+{
+ "PetalLength":    3.3,
+"PetalWidth":      1,
+"Species": "versicolor",
+"Name": "N229" 
+},
+{
+ "PetalLength":    4.6,
+"PetalWidth":    1.3,
+"Species": "versicolor",
+"Name": "N569" 
+},
+{
+ "PetalLength":    3.9,
+"PetalWidth":    1.4,
+"Species": "versicolor",
+"Name": "N831" 
+},
+{
+ "PetalLength":    3.5,
+"PetalWidth":      1,
+"Species": "versicolor",
+"Name": "N546" 
+},
+{
+ "PetalLength":    4.2,
+"PetalWidth":    1.5,
+"Species": "versicolor",
+"Name": "N799" 
+},
+{
+ "PetalLength":      4,
+"PetalWidth":      1,
+"Species": "versicolor",
+"Name": "N270" 
+},
+{
+ "PetalLength":    4.7,
+"PetalWidth":    1.4,
+"Species": "versicolor",
+"Name": "N665" 
+},
+{
+ "PetalLength":    3.6,
+"PetalWidth":    1.3,
+"Species": "versicolor",
+"Name": "N300" 
+},
+{
+ "PetalLength":    4.4,
+"PetalWidth":    1.4,
+"Species": "versicolor",
+"Name": "N553" 
+},
+{
+ "PetalLength":    4.5,
+"PetalWidth":    1.5,
+"Species": "versicolor",
+"Name": "N891" 
+},
+{
+ "PetalLength":    4.1,
+"PetalWidth":      1,
+"Species": "versicolor",
+"Name": "N39" 
+},
+{
+ "PetalLength":    4.5,
+"PetalWidth":    1.5,
+"Species": "versicolor",
+"Name": "N603" 
+},
+{
+ "PetalLength":    3.9,
+"PetalWidth":    1.1,
+"Species": "versicolor",
+"Name": "N759" 
+},
+{
+ "PetalLength":    4.8,
+"PetalWidth":    1.8,
+"Species": "versicolor",
+"Name": "N203" 
+},
+{
+ "PetalLength":      4,
+"PetalWidth":    1.3,
+"Species": "versicolor",
+"Name": "N37" 
+},
+{
+ "PetalLength":    4.9,
+"PetalWidth":    1.5,
+"Species": "versicolor",
+"Name": "N426" 
+},
+{
+ "PetalLength":    4.7,
+"PetalWidth":    1.2,
+"Species": "versicolor",
+"Name": "N991" 
+},
+{
+ "PetalLength":    4.3,
+"PetalWidth":    1.3,
+"Species": "versicolor",
+"Name": "N208" 
+},
+{
+ "PetalLength":    4.4,
+"PetalWidth":    1.4,
+"Species": "versicolor",
+"Name": "N636" 
+},
+{
+ "PetalLength":    4.8,
+"PetalWidth":    1.4,
+"Species": "versicolor",
+"Name": "N752" 
+},
+{
+ "PetalLength":      5,
+"PetalWidth":    1.7,
+"Species": "versicolor",
+"Name": "N773" 
+},
+{
+ "PetalLength":    4.5,
+"PetalWidth":    1.5,
+"Species": "versicolor",
+"Name": "N755" 
+},
+{
+ "PetalLength":    3.5,
+"PetalWidth":      1,
+"Species": "versicolor",
+"Name": "N616" 
+},
+{
+ "PetalLength":    3.8,
+"PetalWidth":    1.1,
+"Species": "versicolor",
+"Name": "N547" 
+},
+{
+ "PetalLength":    3.7,
+"PetalWidth":      1,
+"Species": "versicolor",
+"Name": "N290" 
+},
+{
+ "PetalLength":    3.9,
+"PetalWidth":    1.2,
+"Species": "versicolor",
+"Name": "N306" 
+},
+{
+ "PetalLength":    5.1,
+"PetalWidth":    1.6,
+"Species": "versicolor",
+"Name": "N405" 
+},
+{
+ "PetalLength":    4.5,
+"PetalWidth":    1.5,
+"Species": "versicolor",
+"Name": "N143" 
+},
+{
+ "PetalLength":    4.5,
+"PetalWidth":    1.6,
+"Species": "versicolor",
+"Name": "N198" 
+},
+{
+ "PetalLength":    4.7,
+"PetalWidth":    1.5,
+"Species": "versicolor",
+"Name": "N51" 
+},
+{
+ "PetalLength":    4.4,
+"PetalWidth":    1.3,
+"Species": "versicolor",
+"Name": "N613" 
+},
+{
+ "PetalLength":    4.1,
+"PetalWidth":    1.3,
+"Species": "versicolor",
+"Name": "N302" 
+},
+{
+ "PetalLength":      4,
+"PetalWidth":    1.3,
+"Species": "versicolor",
+"Name": "N172" 
+},
+{
+ "PetalLength":    4.4,
+"PetalWidth":    1.2,
+"Species": "versicolor",
+"Name": "N59" 
+},
+{
+ "PetalLength":    4.6,
+"PetalWidth":    1.4,
+"Species": "versicolor",
+"Name": "N290" 
+},
+{
+ "PetalLength":      4,
+"PetalWidth":    1.2,
+"Species": "versicolor",
+"Name": "N201" 
+},
+{
+ "PetalLength":    3.3,
+"PetalWidth":      1,
+"Species": "versicolor",
+"Name": "N573" 
+},
+{
+ "PetalLength":    4.2,
+"PetalWidth":    1.3,
+"Species": "versicolor",
+"Name": "N847" 
+},
+{
+ "PetalLength":    4.2,
+"PetalWidth":    1.2,
+"Species": "versicolor",
+"Name": "N903" 
+},
+{
+ "PetalLength":    4.2,
+"PetalWidth":    1.3,
+"Species": "versicolor",
+"Name": "N222" 
+},
+{
+ "PetalLength":    4.3,
+"PetalWidth":    1.3,
+"Species": "versicolor",
+"Name": "N574" 
+},
+{
+ "PetalLength":      3,
+"PetalWidth":    1.1,
+"Species": "versicolor",
+"Name": "N52" 
+},
+{
+ "PetalLength":    4.1,
+"PetalWidth":    1.3,
+"Species": "versicolor",
+"Name": "N798" 
+},
+{
+ "PetalLength":      6,
+"PetalWidth":    2.5,
+"Species": "virginica",
+"Name": "N956" 
+},
+{
+ "PetalLength":    5.1,
+"PetalWidth":    1.9,
+"Species": "virginica",
+"Name": "N256" 
+},
+{
+ "PetalLength":    5.9,
+"PetalWidth":    2.1,
+"Species": "virginica",
+"Name": "N505" 
+},
+{
+ "PetalLength":    5.6,
+"PetalWidth":    1.8,
+"Species": "virginica",
+"Name": "N511" 
+},
+{
+ "PetalLength":    5.8,
+"PetalWidth":    2.2,
+"Species": "virginica",
+"Name": "N530" 
+},
+{
+ "PetalLength":    6.6,
+"PetalWidth":    2.1,
+"Species": "virginica",
+"Name": "N324" 
+},
+{
+ "PetalLength":    4.5,
+"PetalWidth":    1.7,
+"Species": "virginica",
+"Name": "N677" 
+},
+{
+ "PetalLength":    6.3,
+"PetalWidth":    1.8,
+"Species": "virginica",
+"Name": "N907" 
+},
+{
+ "PetalLength":    5.8,
+"PetalWidth":    1.8,
+"Species": "virginica",
+"Name": "N760" 
+},
+{
+ "PetalLength":    6.1,
+"PetalWidth":    2.5,
+"Species": "virginica",
+"Name": "N349" 
+},
+{
+ "PetalLength":    5.1,
+"PetalWidth":      2,
+"Species": "virginica",
+"Name": "N508" 
+},
+{
+ "PetalLength":    5.3,
+"PetalWidth":    1.9,
+"Species": "virginica",
+"Name": "N19" 
+},
+{
+ "PetalLength":    5.5,
+"PetalWidth":    2.1,
+"Species": "virginica",
+"Name": "N749" 
+},
+{
+ "PetalLength":      5,
+"PetalWidth":      2,
+"Species": "virginica",
+"Name": "N457" 
+},
+{
+ "PetalLength":    5.1,
+"PetalWidth":    2.4,
+"Species": "virginica",
+"Name": "N687" 
+},
+{
+ "PetalLength":    5.3,
+"PetalWidth":    2.3,
+"Species": "virginica",
+"Name": "N124" 
+},
+{
+ "PetalLength":    5.5,
+"PetalWidth":    1.8,
+"Species": "virginica",
+"Name": "N754" 
+},
+{
+ "PetalLength":    6.7,
+"PetalWidth":    2.2,
+"Species": "virginica",
+"Name": "N163" 
+},
+{
+ "PetalLength":    6.9,
+"PetalWidth":    2.3,
+"Species": "virginica",
+"Name": "N367" 
+},
+{
+ "PetalLength":      5,
+"PetalWidth":    1.5,
+"Species": "virginica",
+"Name": "N445" 
+},
+{
+ "PetalLength":    5.7,
+"PetalWidth":    2.3,
+"Species": "virginica",
+"Name": "N957" 
+},
+{
+ "PetalLength":    4.9,
+"PetalWidth":      2,
+"Species": "virginica",
+"Name": "N743" 
+},
+{
+ "PetalLength":    6.7,
+"PetalWidth":      2,
+"Species": "virginica",
+"Name": "N116" 
+},
+{
+ "PetalLength":    4.9,
+"PetalWidth":    1.8,
+"Species": "virginica",
+"Name": "N958" 
+},
+{
+ "PetalLength":    5.7,
+"PetalWidth":    2.1,
+"Species": "virginica",
+"Name": "N182" 
+},
+{
+ "PetalLength":      6,
+"PetalWidth":    1.8,
+"Species": "virginica",
+"Name": "N540" 
+},
+{
+ "PetalLength":    4.8,
+"PetalWidth":    1.8,
+"Species": "virginica",
+"Name": "N229" 
+},
+{
+ "PetalLength":    4.9,
+"PetalWidth":    1.8,
+"Species": "virginica",
+"Name": "N951" 
+},
+{
+ "PetalLength":    5.6,
+"PetalWidth":    2.1,
+"Species": "virginica",
+"Name": "N979" 
+},
+{
+ "PetalLength":    5.8,
+"PetalWidth":    1.6,
+"Species": "virginica",
+"Name": "N916" 
+},
+{
+ "PetalLength":    6.1,
+"PetalWidth":    1.9,
+"Species": "virginica",
+"Name": "N575" 
+},
+{
+ "PetalLength":    6.4,
+"PetalWidth":      2,
+"Species": "virginica",
+"Name": "N945" 
+},
+{
+ "PetalLength":    5.6,
+"PetalWidth":    2.2,
+"Species": "virginica",
+"Name": "N904" 
+},
+{
+ "PetalLength":    5.1,
+"PetalWidth":    1.5,
+"Species": "virginica",
+"Name": "N759" 
+},
+{
+ "PetalLength":    5.6,
+"PetalWidth":    1.4,
+"Species": "virginica",
+"Name": "N919" 
+},
+{
+ "PetalLength":    6.1,
+"PetalWidth":    2.3,
+"Species": "virginica",
+"Name": "N195" 
+},
+{
+ "PetalLength":    5.6,
+"PetalWidth":    2.4,
+"Species": "virginica",
+"Name": "N684" 
+},
+{
+ "PetalLength":    5.5,
+"PetalWidth":    1.8,
+"Species": "virginica",
+"Name": "N524" 
+},
+{
+ "PetalLength":    4.8,
+"PetalWidth":    1.8,
+"Species": "virginica",
+"Name": "N425" 
+},
+{
+ "PetalLength":    5.4,
+"PetalWidth":    2.1,
+"Species": "virginica",
+"Name": "N207" 
+},
+{
+ "PetalLength":    5.6,
+"PetalWidth":    2.4,
+"Species": "virginica",
+"Name": "N298" 
+},
+{
+ "PetalLength":    5.1,
+"PetalWidth":    2.3,
+"Species": "virginica",
+"Name": "N899" 
+},
+{
+ "PetalLength":    5.1,
+"PetalWidth":    1.9,
+"Species": "virginica",
+"Name": "N376" 
+},
+{
+ "PetalLength":    5.9,
+"PetalWidth":    2.3,
+"Species": "virginica",
+"Name": "N293" 
+},
+{
+ "PetalLength":    5.7,
+"PetalWidth":    2.5,
+"Species": "virginica",
+"Name": "N548" 
+},
+{
+ "PetalLength":    5.2,
+"PetalWidth":    2.3,
+"Species": "virginica",
+"Name": "N411" 
+},
+{
+ "PetalLength":      5,
+"PetalWidth":    1.9,
+"Species": "virginica",
+"Name": "N332" 
+},
+{
+ "PetalLength":    5.2,
+"PetalWidth":      2,
+"Species": "virginica",
+"Name": "N566" 
+},
+{
+ "PetalLength":    5.4,
+"PetalWidth":    2.3,
+"Species": "virginica",
+"Name": "N186" 
+},
+{
+ "PetalLength":    5.1,
+"PetalWidth":    1.8,
+"Species": "virginica",
+"Name": "N854" 
+} 
+]
+  
+      var data = d3.nest()
+        .key(function(d){
+          return opts.group === undefined ? 'main' : d[opts.group]
+        })
+        .entries(data)
+      
+      nv.addGraph(function() {
+        var chart = nv.models[opts.type]()
+          .x(function(d) { return d[opts.x] })
+          .y(function(d) { return d[opts.y] })
+          .width(opts.width)
+          .height(opts.height)
+         
+        chart
+  .showDistX(true)
+  .showDistY(true)
+          
+        chart.xAxis
+  .axisLabel("PetalWidth")
+
+        
+        
+        chart.yAxis
+  .axisLabel("PetalLength")
+      
+       d3.select("#" + opts.id)
+        .append('svg')
+        .datum(data)
+        .transition().duration(500)
+        .call(chart);
+
+// hacking begins
+d3.select("#" + opts.id)
+.append("text")
+.attr("x", 200)             
+.attr("y", 100)
+.attr("text-anchor", "middle")  
+.text("This is TITLE");
+
+
+d3.selectAll("circle")
+.on("mouseover", function(d) {
+    d3.select("#tooltip")
+    .style("left", d3.event.pageX + "px")
+    .style("top", d3.event.pageY + "px")
+    .select("#value")
+    .text(d.Name);
+    d3.select("#tooltip").classed("hidden", false);})
+.on("mouseout", function() {
+    d3.select("#tooltip").classed("hidden", true);});
+
+// hacking ends
+       nv.utils.windowResize(chart.update);
+       return chart;
+      });
+    };
+</script>
+
+
+<div id="tooltip" class="hidden">
+    <p><strong>Name Info</strong></p>
+    <p><span id="value">0</span></p>
+</div>
+
+
+  </body>
+</html>

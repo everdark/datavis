@@ -4,7 +4,7 @@
 
 
 ################################################################################
-####                        set up working environment                      ####
+####                        setup working environment                       ####
 ################################################################################
 setwd('C:/Dropbox/R/datavis')
 library(ggplot2)   # package for fancy plotting
