@@ -7,6 +7,8 @@ The `ggplot2` package provides a unified method of various plotting facilities w
 
 The `rCharts` package provides a powerful hogh-level interface to multiple javascript dynamic graphing libraries, for example the notably NVD3.js. 
 
-For ggplot2, the main reference is [Winston Chang's R Graphics CookBook](http://shop.oreilly.com/product/0636920023135.do).
 
-A good tutorial about D3: [Scott Murray's Interactive Data Visualization for the Web](http://chimera.labs.oreilly.com/books/1230000000345/index.html)
+### References
+* For ggplot2, the main reference is [Winston Chang's R Graphics CookBook](http://shop.oreilly.com/product/0636920023135.do).
+
+* A good tutorial about D3: [Scott Murray's Interactive Data Visualization for the Web](http://chimera.labs.oreilly.com/books/1230000000345/index.html)

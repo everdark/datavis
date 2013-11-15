@@ -36,9 +36,10 @@ nvd3 <- nvd3Plot(
     #   tickFormat  d3.format(".1%") (not able to parse in R, must manually add to js)
     chart=list(showDistX=TRUE, showDistY=TRUE)
     # available parameters for chart:
-    #   showDistX   logic
-    #   showDistX   logic
-    #   showLegend  logic
+    #   showDistX       logic
+    #   showDistX       logic
+    #   showLegend      logic
+    #   showControls    logic (fisheye effect)
 )
 nvd3             # .html saved to tempdir with random-string file name
 nvd3$print()
