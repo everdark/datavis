@@ -117,9 +117,9 @@ visualizeDynamic <- function(case, fname='scatterChart_hacked') {
         '
         d3.selectAll("circle")
           .on("click", function(d) {
-            var domaincensus = "http://google.com/search?q=";
-            domaincensus += d.Name;
-            window.location = domaincensus;}
+            var url = "http://google.com/search?q=";
+            url += d.Name;
+            window.location.href = url;}
         );
         ',
         file=tfile)
